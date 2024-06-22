@@ -14,6 +14,9 @@ const ArticlesPage = () => {
   return (
     <main className="">
       <div className="flex-col justify-center w-auto m-4">
+        <div className='flex justify-center text-slate-200 mb-9 text-6xl'>
+          Search for awesome articles!
+        </div>
         <div className="flex justify-center text-black mx-4 h-fit mb-4">
           <Filter setFilter={setFilter} />
         </div>
