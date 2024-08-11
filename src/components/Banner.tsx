@@ -22,7 +22,7 @@ const Banner: React.FC = () => {
             strokeDashoffset: [anime.setDashoffset, 0],
             easing: 'easeInOutSine',
             duration: 1500,
-            delay: function (el, i) { return i * 250 },
+            delay: function (el, i) { return i * 50 },
             direction: 'alternate',
             loop: false,
           });
