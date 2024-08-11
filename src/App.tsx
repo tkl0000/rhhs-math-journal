@@ -6,6 +6,7 @@ import AckPage from './pages/AckPage';
 import Navbar from './components/Navbar'
 import Transition from './components/Transition'
 import { MathJaxContext } from 'better-react-mathjax';
+import LoginPage from './pages/LoginPage';
 
 // framer motion\
 
@@ -23,6 +24,7 @@ const App = () => {
             <Route path="/" element={<Transition children={<HomePage />} enter='fade-in' exit='fade-out' />} />
             <Route path="/articles" element={<Transition children={<ArticlesPage />} enter='fade-in' exit='fade-out' />} />
             <Route path="/acknowledgements" element={<Transition children={<AckPage />} enter='fade-in' exit='fade-out' />} />
+            <Route path="/login" element={<Transition children={<LoginPage />} enter='fade-in' exit='fade-out' />} />
           </Routes>
         </main>
       </div>

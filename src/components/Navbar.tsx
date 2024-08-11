@@ -9,6 +9,7 @@ const Navbar: React.FC = () => {
           <NavbarButton title="home" destination="/" />
           <NavbarButton title="articles" destination="/articles" />
           <NavbarButton title="acknowledgements" destination="/acknowledgements" />
+          <NavbarButton title="login" destination="/login" />
         </div>
       </div>
     </nav>
