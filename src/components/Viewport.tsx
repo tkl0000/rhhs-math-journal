@@ -1,13 +1,14 @@
 import React from 'react';
 import { useState } from 'react';
-import { Document, Page, pdfjs } from "react-pdf";
+const test_url = "https://web.evanchen.cc/exams/sols-OTIS-Mock-AIME-2024.pdf";
 
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+const api_query = "http://localhost:3000/articles/pdf/"
 
+interface ViewportProps {
+    filename: string;
+}
 
-const test_url = "public/articles/example1/example.pdf";
-
-const Viewport: React.FC = () => {
+const Viewport: React.FC<ViewportProps> = ({ filename }) => {
 
     const [index, setIndex] = useState(-1)
     const [numPages, setNumPages] = useState<number>(0);
@@ -30,16 +31,13 @@ const Viewport: React.FC = () => {
     }
 
     return (
-        <div className="bg-slate-200 rounded-lg p-8 h-dvh">
+        <div className="bg-slate-200 rounded-lg p-8">
             {/* <p className='text-black text-center'>Article Viewport</p> */}
-            <button onClick={() => decrementPages()} className="text-black">Left</button>
-            <button onClick={() => incrementPages()} className="text-black">Right</button>
+            {/* <button onClick={() => decrementPages()} className="text-black">Left</button>
+            <button onClick={() => incrementPages()} className="text-black">Right</button> */}
             <div className='overflow-y-scroll bg-black'>
-                <Document className="" file={test_url} onLoadSuccess={onDocumentLoadSuccess}>
-                    <Page className="" width={1000} pageNumber={pageNumber} renderMode="canvas" renderTextLayer={false} renderAnnotationLayer={false}></Page>
-                </Document>
+                <iframe src={filename} width="100%" height="600px" title="PDF Viewer" />
             </div>
-            {/* <embed src={test_url} width="600" height="500" type="application/pdf"></embed> */}
         </div >
     );
 }
