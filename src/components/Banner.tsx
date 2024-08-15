@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 import anime from 'animejs'
-import Transition from './Transition';
 
 const svg_url = './src/assets/logo.svg';
 
@@ -21,7 +20,7 @@ const Banner: React.FC = () => {
             strokeDashoffset: [anime.setDashoffset, 0],
             easing: 'easeInOutSine',
             duration: 1500,
-            delay: function (el, i) { return i * 50 },
+            delay: function (_el, i) { return i * 50 },
             direction: 'alternate',
             loop: false,
           });

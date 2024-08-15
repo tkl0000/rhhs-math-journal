@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, FormEvent } from 'react';
+import { useState, ChangeEvent, FormEvent } from 'react';
 
 const apiUrl = import.meta.env.VITE_APP_API_URL
 

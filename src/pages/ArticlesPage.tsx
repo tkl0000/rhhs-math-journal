@@ -1,11 +1,11 @@
 // src/HomePage.js
 // import React from 'react';
 
-import Viewport from '../components/Viewport.tsx'
+// import Viewport from '../components/Viewport.tsx'
 import Filter from '../components/Filter.tsx'
 import ArticleCard from '../components/ArticleCard.tsx';
 import { useState, useEffect } from 'react';
-import { AnimatePresence, motion, Variants } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 import axios from 'axios';
 
@@ -26,7 +26,7 @@ const ArticlesPage = () => {
 
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+  const [_error, setError] = useState<string | null>(null);
   const [curFilter, setFilter] = useState<string>("");
   const [path, setPath] = useState<string>(test_url);
   const filtered: JSX.Element[] = [];

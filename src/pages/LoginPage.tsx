@@ -19,6 +19,7 @@ const LoginPage: React.FC = () => {
           'Authorization': token,
         },
       });
+      console.log(response.data)
       setAuthenticated(true);
     } catch (error) {
       console.error('Error fetching data:', error);

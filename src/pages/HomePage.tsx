@@ -2,10 +2,10 @@
 // import React from 'react';
 
 import Banner from '../components/Banner.tsx';
-import { MathJax } from 'better-react-mathjax';
-import ParallaxEquations from '../components/ParallaxEquations.tsx';
-import anime from 'animejs'
-import React, { useState, useEffect, useRef, ReactNode } from 'react';
+// import { MathJax } from 'better-react-mathjax';
+// import ParallaxEquations from '../components/ParallaxEquations.tsx';
+// import anime from 'animejs'
+// import React, { useState, useEffect, useRef, ReactNode } from 'react';
 
 const HomePage = () => {
 
