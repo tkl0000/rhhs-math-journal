@@ -13,7 +13,7 @@ const LoginPage = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/articles/login', {
+      const response = await axios.get('http://localhost:3000/login', {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': token,

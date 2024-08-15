@@ -23,7 +23,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ setToken }) => {
         console.log('Submitted: ', password)
 
         try {
-            const response = await axios.post('http://localhost:3000/articles/login', { password });
+            const response = await axios.post('http://localhost:3000/login', { password });
             // Save the token to localStorage or state
             setToken(response.data.token);
             localStorage.setItem('token', response.data.token);

@@ -39,7 +39,7 @@ function UploadForm() {
         formData.append('year', year.toString());
 
         try {
-            const response = await fetch('http://localhost:3000/articles/upload', {
+            const response = await fetch('http://localhost:3000/upload', {
                 method: 'POST',
                 body: formData,
             });
