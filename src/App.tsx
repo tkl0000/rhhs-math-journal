@@ -1,47 +1,84 @@
-// import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { AnimatePresence, motion, Variants } from 'framer-motion';
 import HomePage from './pages/HomePage';
 import ArticlesPage from './pages/ArticlesPage';
 import AckPage from './pages/AckPage';
-import Navbar from './components/Navbar'
-import Transition from './components/Transition'
-import { MathJaxContext } from 'better-react-mathjax';
+import Navbar from './components/Navbar';
 import LoginPage from './pages/LoginPage';
 
-// framer motion\
-
-const mathJaxConfig = {
-  loader: { load: ['input/tex', 'output/svg'] }
+const pageTransition: Variants = {
+  initial: { opacity: 0, x: -20, transition: { duration: 0.3, ease: 'easeInOut' } },
+  animate: { opacity: 1, x: 0, transition: { duration: 0.3, ease: 'easeInOut' } },
+  exit: { opacity: 0, x: 20, transition: { duration: 0.3, ease: 'easeInOut' } },
 };
 
-const App = () => {
+const App: React.FC = () => {
+  const location = useLocation();
+
   return (
-    <MathJaxContext config={mathJaxConfig}>
-      <div className="">
-        <Navbar />
-        <main className="">
-          <Routes>
-            <Route path="/" element={<Transition children={<HomePage />} enter='fade-in' exit='fade-out' />} />
-            <Route path="/articles" element={<Transition children={<ArticlesPage />} enter='fade-in' exit='fade-out' />} />
-            <Route path="/acknowledgements" element={<Transition children={<AckPage />} enter='fade-in' exit='fade-out' />} />
-            <Route path="/login" element={<Transition children={<LoginPage />} enter='fade-in' exit='fade-out' />} />
+    <div className="">
+      <Navbar />
+      <main className="">
+        <AnimatePresence mode="wait">
+          <Routes location={location} key={location.pathname}>
+            <Route
+              path="/"
+              element={
+                <motion.div
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                  variants={pageTransition}
+                >
+                  <HomePage />
+                </motion.div>
+              }
+            />
+            <Route
+              path="/articles"
+              element={
+                <motion.div
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                  variants={pageTransition}
+                >
+                  <ArticlesPage />
+                </motion.div>
+              }
+            />
+            <Route
+              path="/acknowledgements"
+              element={
+                <motion.div
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                  variants={pageTransition}
+                >
+                  <AckPage />
+                </motion.div>
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <motion.div
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                  variants={pageTransition}
+                >
+                  <LoginPage />
+                </motion.div>
+              }
+            />
           </Routes>
-        </main>
-      </div>
-    </MathJaxContext>
+        </AnimatePresence>
+      </main>
+    </div>
   );
 }
-
-// function App() {
-//   return (
-//     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-//       <div className="bg-white p-8 rounded shadow-md">
-//         <h1 className="text-2xl font-bold mb-4">Hello, Tailwind CSS!</h1>
-//         <p className="text-gray-700">This is a simple example of using Tailwind CSS with React.</p>
-//       </div>
-//     </div>
-//   );
-// }
-
 
 export default App;

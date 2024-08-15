@@ -17,10 +17,16 @@ const Transition: React.FC<TransitionProps> = ({ children, enter, exit }) => {
         const timeout = setTimeout(() => {
             setCurrentChildren(children);
             setIsTransitioning(false);
-        }, 300); // Adjust this duration if necessary
+        }, 0); // Adjust this duration if necessary
 
         return () => clearTimeout(timeout);
     }, [children, location]);
+
+    return (
+        <div>
+            {currentChildren}
+        </div>
+    )
 
     return (
         <div className={`${isTransitioning ? exit : enter}`}>

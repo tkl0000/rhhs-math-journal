@@ -15,7 +15,6 @@ const Banner: React.FC = () => {
       .then(svgText => {
         if (svgContainerRef.current) {
           svgContainerRef.current.innerHTML = svgText;
-          // Select the circle element and animate it using Anime.js
           anime({
             targets: svgContainerRef.current.querySelectorAll('path'),
             fill: ['transparent', '#E2E8F0'],
