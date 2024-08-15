@@ -8,9 +8,10 @@ import Navbar from './components/Navbar';
 import LoginPage from './pages/LoginPage';
 
 const pageTransition: Variants = {
-  initial: { opacity: 0, x: 0, transition: { duration: 0.3, ease: 'easeInOut' } },
+  initial: { opacity: 0, x: -10, transition: { duration: 0.3, ease: 'easeInOut' } },
   animate: { opacity: 1, x: 0, transition: { duration: 0.3, ease: 'easeInOut' } },
-  exit: { opacity: 0, x: 0, transition: { duration: 0.3, ease: 'easeInOut' } },
+  exit: { opacity: 0, x: 10, transition: { duration: 0.3, ease: 'easeInOut' } },
+  style: { overflowX: 'hidden' }
 };
 
 const App: React.FC = () => {
