@@ -2,7 +2,8 @@ import React from 'react';
 import { useState } from 'react';
 const test_url = "https://web.evanchen.cc/exams/sols-OTIS-Mock-AIME-2024.pdf";
 
-const api_query = "http://localhost:3000/articles/pdf/"
+const apiUrl = process.env.REACT_APP_API_URL
+const api_query = apiUrl + "articles/pdf/"
 
 interface ViewportProps {
     filename: string;

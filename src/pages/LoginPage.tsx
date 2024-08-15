@@ -6,6 +6,8 @@ import UploadForm from '../components/UploadForm.tsx';
 import LoginForm from '../components/LoginForm.tsx';
 import axios from 'axios';
 
+const apiUrl = process.env.REACT_APP_API_URL;
+
 const LoginPage = () => {
 
   const [token, setToken] = useState(localStorage.getItem('token'));
@@ -13,7 +15,7 @@ const LoginPage = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/login', {
+      const response = await axios.get(apiUrl + 'login', {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': token,

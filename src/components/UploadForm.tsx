@@ -1,5 +1,7 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 
+const apiUrl = process.env.REACT_APP_API_URL;
+
 function UploadForm() {
     const [file, setFile] = useState<File | null>(null);
     const [name, setName] = useState<string>('');
@@ -39,7 +41,7 @@ function UploadForm() {
         formData.append('year', year.toString());
 
         try {
-            const response = await fetch('http://localhost:3000/upload', {
+            const response = await fetch(apiUrl + 'upload', {
                 method: 'POST',
                 body: formData,
             });

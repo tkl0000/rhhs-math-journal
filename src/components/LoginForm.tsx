@@ -5,6 +5,8 @@ interface LoginFormProps {
     setToken: (token: string) => void;
 }
 
+const apiUrl = process.env.REACT_APP_API_URL;
+
 const LoginForm: React.FC<LoginFormProps> = ({ setToken }) => {
     const [password, setPassword] = useState<string>('');
 
@@ -23,7 +25,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ setToken }) => {
         console.log('Submitted: ', password)
 
         try {
-            const response = await axios.post('http://localhost:3000/login', { password });
+            const response = await axios.post(apiUrl + 'login', { password });
             // Save the token to localStorage or state
             setToken(response.data.token);
             localStorage.setItem('token', response.data.token);

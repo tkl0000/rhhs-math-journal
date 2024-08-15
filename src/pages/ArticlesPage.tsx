@@ -8,8 +8,9 @@ import { useState, useEffect } from 'react';
 
 import axios from 'axios';
 
+const apiUrl = process.env.REACT_APP_API_URL;
 const test_url = "https://web.evanchen.cc/exams/sols-OTIS-Mock-AIME-2024.pdf";
-const api_query = "http://localhost:3000/pdf/"
+const api_query = apiUrl + 'pdf'
 
 
 interface Article {
@@ -37,7 +38,7 @@ const ArticlesPage = () => {
 
   const handleCardDelete = async (_id: string) => {
     try {
-      const response = await axios.delete('http://localhost:3000/articles/' + _id);
+      const response = await axios.delete(apiUrl + 'articles/' + _id);
       console.log(response.data)
       setArticles((prevArticles) => prevArticles.filter(article => article._id !== _id));
     } catch (err) {
@@ -49,7 +50,7 @@ const ArticlesPage = () => {
     // Fetch data from the backend when the component mounts
     const fetchArticles = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/articles');
+        const response = await axios.get(apiUrl + 'articles');
         console.log(response.data)
         setArticles(response.data);
         setLoading(false);
