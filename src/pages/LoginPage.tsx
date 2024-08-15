@@ -31,8 +31,7 @@ const LoginPage = () => {
 
   if (authenticated) {
     return (<main className="container mx-auto">
-      <div className="w-1/2 content-center text-slate-200 text-xl">
-        Login type zoink
+      <div className="m-6">
         <UploadForm />
       </div>
     </main>)
@@ -40,7 +39,7 @@ const LoginPage = () => {
   else {
     return (
       <main className="container mx-auto">
-        <div>
+        <div className="m-6">
           <LoginForm setToken={setToken} />
         </div>
       </main>

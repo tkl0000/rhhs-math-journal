@@ -33,7 +33,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ setToken }) => {
     };
 
     return (
-        <div className="flex justify-center items-center mt-8 ">
+        <div className="flex justify-center items-center">
             <form
                 onSubmit={handleSubmit}
                 className="bg-white p-6 rounded-lg shadow-lg w-full max-w-sm"
@@ -51,14 +51,14 @@ const LoginForm: React.FC<LoginFormProps> = ({ setToken }) => {
                         id="passwordInput"
                         value={password}
                         onChange={handlePasswordChange}
-                        className="w-full px-4 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-4 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-slate-500"
                         placeholder="Enter your password"
                         required
                     />
                 </div>
                 <button
                     type="submit"
-                    className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-200"
+                    className="w-full bg-slate-500 text-white py-2 rounded-lg hover:bg-slate-600 transition duration-200"
                 >
                     Enter
                 </button>

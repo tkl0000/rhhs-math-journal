@@ -59,49 +59,71 @@ function UploadForm() {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label htmlFor="fileInput">Select PDF file:</label>
+        <form onSubmit={handleSubmit} className="max-w-lg mx-auto p-6 bg-white shadow-md rounded-lg">
+            <div className="mb-4">
+                <label htmlFor="fileInput" className="block text-sm font-medium text-gray-700">
+                    Select PDF file:
+                </label>
                 <input
                     type="file"
                     id="fileInput"
                     accept="application/pdf"
                     onChange={handleFileChange}
+                    className="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-slate-50 file:text-slate-800 hover:file:bg-slate-100"
                 />
             </div>
-            <div>
-                <label htmlFor="nameInput">Name:</label>
+
+            <div className="mb-4">
+                <label htmlFor="nameInput" className="block text-sm font-medium text-gray-700">
+                    Name:
+                </label>
                 <input
                     type="text"
                     id="nameInput"
                     value={name}
                     onChange={handleNameChange}
                     required
+                    className="mt-1 block w-full px-3 py-2 border text-black border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm"
                 />
             </div>
-            <div>
-                <label htmlFor="authorInput">Author:</label>
+
+            <div className="mb-4">
+                <label htmlFor="authorInput" className="block text-sm font-medium text-gray-700">
+                    Author:
+                </label>
                 <input
                     type="text"
                     id="authorInput"
                     value={author}
                     onChange={handleAuthorChange}
                     required
+                    className="mt-1 block w-full px-3 py-2 border text-black border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm"
                 />
             </div>
-            <div>
-                <label htmlFor="yearInput">Year:</label>
+
+            <div className="mb-4">
+                <label htmlFor="yearInput" className="block text-sm font-medium text-gray-700">
+                    Year:
+                </label>
                 <input
                     type="number"
                     id="yearInput"
                     value={year}
                     onChange={handleYearChange}
                     required
+                    className="mt-1 block w-full px-3 py-2 border text-black border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm"
                 />
             </div>
-            <button type="submit">Upload</button>
+
+            <button
+                type="submit"
+                className="w-full bg-slate-600 text-white py-2 px-4 rounded-md shadow hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500"
+            >
+                Upload
+            </button>
         </form>
     );
+
 }
 
 export default UploadForm;
