@@ -1,17 +1,15 @@
-// src/HomePage.js
-// import React from 'react';
-
-import React, { useState, useEffect, useRef, ReactNode } from 'react';
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import UploadForm from '../components/UploadForm.tsx';
 import LoginForm from '../components/LoginForm.tsx';
 import axios from 'axios';
 
-const apiUrl = process.env.REACT_APP_API_URL;
+const apiUrl = import.meta.env.VITE_APP_API_URL;
 
-const LoginPage = () => {
-
-  const [token, setToken] = useState(localStorage.getItem('token'));
-  const [authenticated, setAuthentication] = useState(false);
+const LoginPage: React.FC = () => {
+  const [token, setToken] = useState<string | null>(localStorage.getItem('token'));
+  const [authenticated, setAuthenticated] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const fetchData = async () => {
     try {
@@ -21,32 +19,45 @@ const LoginPage = () => {
           'Authorization': token,
         },
       });
-      setAuthentication(true)
+      setAuthenticated(true);
     } catch (error) {
       console.error('Error fetching data:', error);
+    } finally {
+      setLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchData();
+    if (token) {
+      fetchData();
+    } else {
+      setLoading(false);
+    }
   }, [token]);
 
-  if (authenticated) {
-    return (<main className="container mx-auto">
-      <div className="m-6">
-        <UploadForm />
-      </div>
-    </main>)
-  }
-  else {
+  if (loading) {
     return (
-      <main className="container mx-auto">
-        <div className="m-6">
-          <LoginForm setToken={setToken} />
-        </div>
-      </main>
-    )
+      <div className="flex justify-center items-center h-screen">
+      </div>
+    );
   }
+
+  return (
+    <motion.main
+      initial={{ opacity: 0, x: 0 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: 0 }}
+      transition={{ duration: 0.3, ease: 'easeInOut' }}
+    >
+      <div className="m-6">
+        {authenticated ? (
+          <UploadForm />
+        ) : (
+          <LoginForm setToken={setToken} />
+        )}
+      </div>
+    </motion.main>
+  );
 };
 
 export default LoginPage;

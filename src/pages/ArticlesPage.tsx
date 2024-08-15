@@ -5,12 +5,13 @@ import Viewport from '../components/Viewport.tsx'
 import Filter from '../components/Filter.tsx'
 import ArticleCard from '../components/ArticleCard.tsx';
 import { useState, useEffect } from 'react';
+import { AnimatePresence, motion, Variants } from 'framer-motion';
 
 import axios from 'axios';
 
-const apiUrl = process.env.REACT_APP_API_URL;
+const apiUrl = import.meta.env.VITE_APP_API_URL
 const test_url = "https://web.evanchen.cc/exams/sols-OTIS-Mock-AIME-2024.pdf";
-const api_query = apiUrl + 'pdf'
+const api_query = apiUrl + 'pdf/'
 
 
 interface Article {
@@ -42,6 +43,7 @@ const ArticlesPage = () => {
       console.log(response.data)
       setArticles((prevArticles) => prevArticles.filter(article => article._id !== _id));
     } catch (err) {
+      console.log('Failed to delete ' + _id)
       setError('Failed to Delete Article');
     }
   }
@@ -64,7 +66,7 @@ const ArticlesPage = () => {
   }, []); // Empty dependency array means this effect runs once when the component mounts
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div></div>;
   }
 
   articles.forEach(article => {
@@ -81,20 +83,27 @@ const ArticlesPage = () => {
   })
 
   return (
-    <main className="">
-      <div className="flex-col justify-center w-auto m-4">
-        <div className='flex justify-center text-slate-200 mb-9 text-6xl'>
-          Search for awesome articles!
+    <motion.main
+      initial={{ opacity: 0, x: 0 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: 0 }}
+      transition={{ duration: 0.3, ease: 'easeInOut' }}
+    >
+      <main className="">
+        <div className="flex-col justify-center w-auto m-4">
+          <div className='flex justify-center text-slate-200 mb-9 text-6xl'>
+            Search for awesome articles!
+          </div>
+          <div className="flex justify-center text-black mx-4 h-fit mb-4">
+            <Filter setFilter={setFilter} />
+          </div>
+          <div className="flex justify-center flex-wrap gap-4 text-slate-200 mx-4 h-fit">
+            {filtered}
+          </div>
+          {/* <Viewport filename={path} /> */}
         </div>
-        <div className="flex justify-center text-black mx-4 h-fit mb-4">
-          <Filter setFilter={setFilter} />
-        </div>
-        <div className="flex justify-center flex-wrap gap-4 text-slate-200 mx-4 h-fit">
-          {filtered}
-        </div>
-        {/* <Viewport filename={path} /> */}
-      </div>
-    </main>
+      </main>
+    </motion.main >
   );
 };
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 const test_url = "https://web.evanchen.cc/exams/sols-OTIS-Mock-AIME-2024.pdf";
 
-const apiUrl = process.env.REACT_APP_API_URL
+const apiUrl = import.meta.env.VITE_APP_API_URL
 const api_query = apiUrl + "articles/pdf/"
 
 interface ViewportProps {

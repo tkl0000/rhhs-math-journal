@@ -1,6 +1,6 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 
-const apiUrl = process.env.REACT_APP_API_URL;
+const apiUrl = import.meta.env.VITE_APP_API_URL
 
 function UploadForm() {
     const [file, setFile] = useState<File | null>(null);

@@ -5,7 +5,7 @@ interface LoginFormProps {
     setToken: (token: string) => void;
 }
 
-const apiUrl = process.env.REACT_APP_API_URL;
+const apiUrl = import.meta.env.VITE_APP_API_URL
 
 const LoginForm: React.FC<LoginFormProps> = ({ setToken }) => {
     const [password, setPassword] = useState<string>('');
