@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import anime from 'animejs'
-
-const svg_url = `/src/assets/logo.svg`;
+import logo from '/src/assets/logo.svg';
+const svg_url = logo
 
 const Banner: React.FC = () => {
 
