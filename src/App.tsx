@@ -11,8 +11,10 @@ const pageTransition: Variants = {
   initial: { opacity: 0, x: -10, transition: { duration: 0.3, ease: 'easeInOut' } },
   animate: { opacity: 1, x: 0, transition: { duration: 0.3, ease: 'easeInOut' } },
   exit: { opacity: 0, x: 10, transition: { duration: 0.3, ease: 'easeInOut' } },
-  style: { overflowX: 'hidden' }
+  style: { overflowX: 'hidden' },
 };
+
+const base_url = import.meta.env.BASE_URL;
 
 const App: React.FC = () => {
   const location = useLocation();
@@ -24,7 +26,7 @@ const App: React.FC = () => {
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
             <Route
-              path="/"
+              path={`${import.meta.env.BASE_URL}`}
               element={
                 <motion.div
                   initial="initial"
@@ -37,13 +39,11 @@ const App: React.FC = () => {
               }
             />
             <Route
-              path="/articles"
-              element={
-                <ArticlesPage />
-              }
+              path={`${base_url}articles`}
+              element={<ArticlesPage />}
             />
             <Route
-              path="/acknowledgements"
+              path={`${base_url}acknowledgements`}
               element={
                 <motion.div
                   initial="initial"
@@ -56,16 +56,14 @@ const App: React.FC = () => {
               }
             />
             <Route
-              path="/login"
-              element={
-                <LoginPage />
-              }
+              path={`${base_url}login`}
+              element={<LoginPage />}
             />
           </Routes>
         </AnimatePresence>
       </main>
     </div>
   );
-}
+};
 
 export default App;

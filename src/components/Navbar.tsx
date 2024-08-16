@@ -1,15 +1,17 @@
 import React from 'react';
 import NavbarButton from './NavbarButton';
 
+const base_url = import.meta.env.BASE_URL;
+
 const Navbar: React.FC = () => {
   return (
     <nav className="bg-gray-800 p-4 sticky top-0 w-full z-10">
       <div className="container mx-auto flex justify-center items-center">
         <div className="flex space-x-8">
-          <NavbarButton title="home" destination="/" />
-          <NavbarButton title="articles" destination="/articles" />
-          <NavbarButton title="acknowledgements" destination="/acknowledgements" />
-          <NavbarButton title="login" destination="/login" />
+          <NavbarButton title="home" destination={`${base_url}`} />
+          <NavbarButton title="articles" destination={`${base_url}articles`} />
+          <NavbarButton title="acknowledgements" destination={`${base_url}acknowledgements`} />
+          <NavbarButton title="login" destination={`${base_url}login`} />
         </div>
       </div>
     </nav>
