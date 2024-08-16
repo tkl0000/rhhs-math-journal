@@ -1,7 +1,7 @@
 import React from 'react';
 import NavbarButton from './NavbarButton';
 
-const base_url = import.meta.env.BASE_URL;
+const base_url = import.meta.env.VITE_BASE_URL;
 
 const Navbar: React.FC = () => {
   return (

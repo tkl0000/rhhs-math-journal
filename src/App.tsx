@@ -14,7 +14,7 @@ const pageTransition: Variants = {
   style: { overflowX: 'hidden' },
 };
 
-const base_url = import.meta.env.BASE_URL;
+const base_url = import.meta.env.VITE_BASE_URL;
 
 const App: React.FC = () => {
   const location = useLocation();
