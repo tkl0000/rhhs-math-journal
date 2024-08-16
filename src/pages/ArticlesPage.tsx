@@ -25,6 +25,7 @@ interface Article {
 const ArticlesPage = () => {
 
   const [articles, setArticles] = useState<Article[]>([]);
+  const [authenticated, setAuthenticated] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
   const [_error, setError] = useState<string | null>(null);
   const [curFilter, setFilter] = useState<string>("");
@@ -62,6 +63,23 @@ const ArticlesPage = () => {
       }
     };
 
+    const fetchLogin = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await axios.get(apiUrl + 'login', {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token,
+          },
+        });
+        console.log(response.data)
+        setAuthenticated(true);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchLogin();
     fetchArticles();
   }, []); // Empty dependency array means this effect runs once when the component mounts
 
@@ -77,6 +95,7 @@ const ArticlesPage = () => {
         content={article.author}
         year={article.year}
         _id={article._id}
+        authenticated={authenticated}
         onClick={() => handleCardClick(article.path)}
         onDelete={() => handleCardDelete(article._id)} />)
     }

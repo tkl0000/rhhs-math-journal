@@ -6,6 +6,7 @@ import ArticlesPage from './pages/ArticlesPage';
 import AckPage from './pages/AckPage';
 import Navbar from './components/Navbar';
 import LoginPage from './pages/LoginPage';
+import JournalPage from './pages/JournalPage';
 
 const pageTransition: Variants = {
   initial: { opacity: 0, x: -10, transition: { duration: 0.3, ease: 'easeInOut' } },
@@ -52,6 +53,19 @@ const App: React.FC = () => {
                   variants={pageTransition}
                 >
                   <AckPage />
+                </motion.div>
+              }
+            />
+            <Route
+              path={`${base_url}journal`}
+              element={
+                <motion.div
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                  variants={pageTransition}
+                >
+                  <JournalPage />
                 </motion.div>
               }
             />

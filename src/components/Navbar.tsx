@@ -10,6 +10,7 @@ const Navbar: React.FC = () => {
         <div className="flex space-x-8">
           <NavbarButton title="home" destination={`${base_url}`} />
           <NavbarButton title="articles" destination={`${base_url}articles`} />
+          <NavbarButton title="journal" destination={`${base_url}journal`} />
           <NavbarButton title="acknowledgements" destination={`${base_url}acknowledgements`} />
           <NavbarButton title="login" destination={`${base_url}login`} />
         </div>
