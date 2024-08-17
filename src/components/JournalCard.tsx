@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { ReactComponent as LinkIcon } from '../assets/link.svg';
+import React, { useState } from 'react';
 
 interface ArticleCardProps {
     year: number;

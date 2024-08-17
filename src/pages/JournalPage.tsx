@@ -1,7 +1,6 @@
 // src/HomePage.js
 // import React from 'react';
 
-import Banner from '../components/Banner.tsx';
 // import { MathJax } from 'better-react-mathjax';
 // import ParallaxEquations from '../components/ParallaxEquations.tsx';
 // import anime from 'animejs'

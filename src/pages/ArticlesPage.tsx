@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Filter from '../components/Filter.tsx';
 import JournalCard from '../components/JournalCard.tsx';
@@ -6,7 +6,7 @@ import ArticleCard from '../components/ArticleCard.tsx';
 import axios from 'axios';
 
 const apiUrl = import.meta.env.VITE_APP_API_URL;
-const test_url = "https://web.evanchen.cc/exams/sols-OTIS-Mock-AIME-2024.pdf";
+// const test_url = "https://web.evanchen.cc/exams/sols-OTIS-Mock-AIME-2024.pdf";
 const api_query = apiUrl + 'pdf/';
 
 interface Article {
@@ -25,13 +25,11 @@ const ArticlesPage = () => {
   const [_error, setError] = useState<string | null>(null);
   const [curFilter, setFilter] = useState<string>("");
   const [yearFilter, setYearFilter] = useState<string>("")
-  const [path, setPath] = useState<string>(test_url);
 
   const handleCardClick = (newPath: string) => {
     if (newPath === "") {
       return;
     }
-    setPath(api_query + newPath);
     window.open(api_query + newPath);
   };
 
@@ -43,7 +41,6 @@ const ArticlesPage = () => {
     }
 
     try {
-      const response = await axios.delete(apiUrl + 'articles/' + _id);
       setArticles((prevArticles) => prevArticles.filter(article => article._id !== _id));
     } catch (err) {
       setError('Failed to Delete Article');
@@ -64,16 +61,19 @@ const ArticlesPage = () => {
 
     const fetchLogin = async () => {
       try {
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem('token')
         const response = await axios.get(apiUrl + 'login', {
           headers: {
             'Content-Type': 'application/json',
             'Authorization': token,
           },
         });
+        console.log(response.data)
         setAuthenticated(true);
       } catch (error) {
         console.error('Error fetching data:', error);
+      } finally {
+        setLoading(false);
       }
     };
 
