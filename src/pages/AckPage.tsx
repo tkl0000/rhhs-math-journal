@@ -1,15 +1,21 @@
-// src/HomePage.js
-// import React from 'react';
-
 const AckPage = () => {
   return (
-    <main className="container mx-auto p-4">
-      <div className="text-slate-200 text-center">
-        <p className="text-4xl">Thanks to:</p>
-        <ul className="text-2xl">
-          <li>Mr. Kennedy</li>
-          <li>Alex Michos</li>
-          <li>Alex Luo &lt;3333333333</li>
+    <main className="flex flex-col min-h-screen container mx-auto p-4">
+      <div className="flex-grow text-slate-200 text-center mb-16">
+        <p className="text-4xl font-bold mb-6">Special Thanks To:</p>
+        <ul className="space-y-4">
+          <li className="text-3xl font-semibold transition duration-300 hover:scale-110 hover:text-white">
+            Mr. Kennedy
+          </li>
+          <li className="text-3xl font-semibold transition duration-300 hover:scale-110 hover:text-white">
+            Alex Michos
+          </li>
+          <li className="text-3xl font-semibold transition duration-300 hover:scale-110 hover:text-white">
+            ❤️ Alex Luo ❤️
+          </li>
+          <li className="text-md font-semibold transition duration-300 hover:scale-110 hover:text-white">
+            website by Thomas Li
+          </li>
         </ul>
       </div>
     </main>

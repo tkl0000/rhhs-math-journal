@@ -132,7 +132,7 @@ function UploadForm() {
                         onChange={handleIsJournalChange}
                         className="h-5 w-5 text-slate-600 border-gray-300 rounded focus:ring-slate-500"
                     />
-                    <span className="ml-2 text-sm font-medium text-gray-700">Main Journal (will overwrite for year!)</span>
+                    <span className="ml-2 text-sm font-medium text-gray-700">Main Journal (will overwrite for specified year!)</span>
                 </label>
             </div>
 
