@@ -1,12 +1,13 @@
 import { useState, ChangeEvent, FormEvent } from 'react';
 
-const apiUrl = import.meta.env.VITE_APP_API_URL
+const apiUrl = import.meta.env.VITE_APP_API_URL;
 
 function UploadForm() {
     const [file, setFile] = useState<File | null>(null);
     const [name, setName] = useState<string>('');
     const [author, setAuthor] = useState<string>('');
     const [year, setYear] = useState<number | ''>('');
+    const [isJournal, setIsJournal] = useState<boolean>(false);
 
     const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
         if (event.target.files && event.target.files.length > 0) {
@@ -26,6 +27,10 @@ function UploadForm() {
         setYear(Number(event.target.value) || '');
     };
 
+    const handleIsJournalChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setIsJournal(event.target.checked);
+    };
+
     const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
 
@@ -39,6 +44,7 @@ function UploadForm() {
         formData.append('name', name);
         formData.append('author', author);
         formData.append('year', year.toString());
+        formData.append('isJournal', isJournal.toString());
 
         try {
             const response = await fetch(apiUrl + 'upload', {
@@ -117,6 +123,19 @@ function UploadForm() {
                 />
             </div>
 
+            <div className="mb-4">
+                <label htmlFor="isJournalInput" className="flex items-center">
+                    <input
+                        type="checkbox"
+                        id="isJournalInput"
+                        checked={isJournal}
+                        onChange={handleIsJournalChange}
+                        className="h-5 w-5 text-slate-600 border-gray-300 rounded focus:ring-slate-500"
+                    />
+                    <span className="ml-2 text-sm font-medium text-gray-700">Main Journal (will overwrite for year!)</span>
+                </label>
+            </div>
+
             <button
                 type="submit"
                 className="w-full bg-slate-600 text-white py-2 px-4 rounded-md shadow hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500"
@@ -125,7 +144,6 @@ function UploadForm() {
             </button>
         </form>
     );
-
 }
 
 export default UploadForm;

@@ -3,6 +3,7 @@
 
 // import Viewport from '../components/Viewport.tsx'
 import Filter from '../components/Filter.tsx'
+import DropdownCard from '../components/DropdownCard.tsx';
 import ArticleCard from '../components/ArticleCard.tsx';
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
@@ -19,6 +20,7 @@ interface Article {
   author: string;
   year: number;
   path: string;
+  isJournal: boolean;
   _id: string;
 }
 
@@ -39,15 +41,22 @@ const ArticlesPage = () => {
   };
 
   const handleCardDelete = async (_id: string) => {
+    const isConfirmed = window.confirm("Are you sure you want to delete this article? This action cannot be undone.");
+
+    if (!isConfirmed) {
+      return; // Exit the function if the user cancels the action
+    }
+
     try {
       const response = await axios.delete(apiUrl + 'articles/' + _id);
-      console.log(response.data)
+      console.log(response.data);
       setArticles((prevArticles) => prevArticles.filter(article => article._id !== _id));
     } catch (err) {
-      console.log('Failed to delete ' + _id)
+      console.log('Failed to delete ' + _id);
       setError('Failed to Delete Article');
     }
-  }
+  };
+
 
   useEffect(() => {
     // Fetch data from the backend when the component mounts
@@ -116,10 +125,23 @@ const ArticlesPage = () => {
           <div className="flex justify-center text-black mx-4 h-fit mb-4">
             <Filter setFilter={setFilter} />
           </div>
-          <div className="flex justify-center flex-wrap gap-4 text-slate-200 mx-4 h-fit">
-            {filtered}
+
+          <div className="flex flex-row w-full h-full">
+            {/* Left Column */}
+            <div className="flex flex-col basis-1/2">
+              <div className="flex justify-left flex-wrap gap-4 text-slate-200 mx-4 h-fit">
+                <DropdownCard year={2024} authenticated={true} onClick={() => { }} />
+              </div>
+            </div>
+
+            {/* Right Column */}
+            <div className="flex flex-col basis-1/2">
+              <div className="flex justify-center flex-wrap gap-4 text-slate-200 mx-4 h-fit">
+                {filtered}
+              </div>
+            </div>
           </div>
-          {/* <Viewport filename={path} /> */}
+
         </div>
       </main>
     </motion.main >
