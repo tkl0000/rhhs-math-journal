@@ -42,6 +42,8 @@ const ArticlesPage = () => {
 
     try {
       setArticles((prevArticles) => prevArticles.filter(article => article._id !== _id));
+      const response = await axios.delete(apiUrl + 'articles/' + _id);
+      console.log(response.data)
     } catch (err) {
       setError('Failed to Delete Article');
     }
