@@ -118,6 +118,17 @@ main {
   flex: 1;
 }
 
+/* Custom CSS */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+
 /* a {
   font-weight: 500;
   color: #646cff;
