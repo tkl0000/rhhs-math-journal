@@ -6,7 +6,7 @@ interface FilterProps {
 
 const Filter: React.FC<FilterProps> = ({ setFilter }) => {
   return (
-    <div className="w-1/2">
+    <div className="w-full">
       <input type="text"
         className="w-full py-3 pl-10 pr-4 bg-white shadow-md focus:outline-none focus:ring-2 focus:ring-slate-200 focus:border-slate-200 border-2 rounded-full"
         placeholder="Search..."

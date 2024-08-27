@@ -6,7 +6,6 @@ import ArticleCard from '../components/ArticleCard.tsx';
 import axios from 'axios';
 
 const apiUrl = import.meta.env.VITE_APP_API_URL;
-// const test_url = "https://web.evanchen.cc/exams/sols-OTIS-Mock-AIME-2024.pdf";
 const api_query = apiUrl + 'pdf/';
 
 interface Article {
@@ -24,7 +23,7 @@ const ArticlesPage = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [_error, setError] = useState<string | null>(null);
   const [curFilter, setFilter] = useState<string>("");
-  const [yearFilter, setYearFilter] = useState<string>("")
+  const [yearFilter, setYearFilter] = useState<string>("");
 
   const handleCardClick = (newPath: string) => {
     if (newPath === "") {
@@ -43,7 +42,7 @@ const ArticlesPage = () => {
     try {
       setArticles((prevArticles) => prevArticles.filter(article => article._id !== _id));
       const response = await axios.delete(apiUrl + 'articles/' + _id);
-      console.log(response.data)
+      console.log(response.data);
     } catch (err) {
       setError('Failed to Delete Article');
     }
@@ -63,14 +62,14 @@ const ArticlesPage = () => {
 
     const fetchLogin = async () => {
       try {
-        const token = localStorage.getItem('token')
+        const token = localStorage.getItem('token');
         const response = await axios.get(apiUrl + 'login', {
           headers: {
             'Content-Type': 'application/json',
             'Authorization': token,
           },
         });
-        console.log(response.data)
+        console.log(response.data);
         setAuthenticated(true);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -81,10 +80,10 @@ const ArticlesPage = () => {
 
     fetchLogin();
     fetchArticles();
-  }, []); // Empty dependency array means this effect runs once when the component mounts
+  }, []);
 
   if (loading) {
-    return <div></div>;
+    return <div>Loading...</div>;
   }
 
   const filtered_articles = articles.filter(article =>
@@ -92,7 +91,7 @@ const ArticlesPage = () => {
     (article.name.toLowerCase().includes(curFilter.toLowerCase()) ||
       article.author.toLowerCase().includes(curFilter.toLowerCase()) ||
       article.year.toString().includes(curFilter)) &&
-    (yearFilter == "" || article.year.toString() == yearFilter)
+    (yearFilter === "" || article.year.toString() === yearFilter)
   );
 
   const filtered_journals = articles.filter(article => article.isJournal);
@@ -104,14 +103,14 @@ const ArticlesPage = () => {
       exit={{ opacity: 0, x: 10 }}
       transition={{ duration: 0.3, ease: 'easeInOut' }}
     >
-      <main className="">
-        <div className="flex-col justify-center w-auto m-4">
-          <div className="flex justify-center text-black mx-4 h-fit mb-4">
+      <main className="px-4 py-6 md:px-8">
+        <div className="flex flex-col w-full space-y-4">
+          <div className="flex justify-center mb-4 w-full sm:w-3/4 md:w-2/3 lg:w-2/3 mx-auto">
             <Filter setFilter={setFilter} />
           </div>
 
           {/* Journals Row */}
-          <div className="flex flex-row flex-wrap gap-4 text-slate-200 mx-4 h-fit">
+          <div className="flex flex-row flex-wrap gap-4 text-slate-200">
             <AnimatePresence>
               {filtered_journals.map(article => (
                 <motion.div
@@ -120,6 +119,7 @@ const ArticlesPage = () => {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.3 }}
+                  className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4"
                 >
                   <JournalCard
                     year={article.year}
@@ -132,7 +132,7 @@ const ArticlesPage = () => {
           </div>
 
           {/* Articles Section */}
-          <div className="flex flex-wrap gap-4 text-slate-200 mx-4 mt-4 h-fit">
+          <div className="flex flex-wrap gap-4 text-slate-200 mt-4">
             <AnimatePresence>
               {filtered_articles.map(article => (
                 <motion.div
@@ -141,6 +141,7 @@ const ArticlesPage = () => {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.3 }}
+                  className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4"
                 >
                   <ArticleCard
                     title={article.name}
