@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
-import anime from 'animejs'
+import anime from 'animejs';
 import logo from '/src/assets/logo.svg';
-const svg_url = logo
+const svg_url = logo;
 
 const Banner: React.FC = () => {
 
@@ -30,15 +30,13 @@ const Banner: React.FC = () => {
   }, []);
 
   return (
-    <div className="flex items-center space-x-4 shadow-lg rounded-lg bg-slate-600 p-12 mb-6 max-w-screen">
-      {/* <img src="src/assets/logo.svg" alt="Logo" className="brightness-0 invert h-96" id="logo"></img> */}
-
-      <div className='h-auto'>
-
+    <div className="flex flex-col md:flex-row items-center md:space-x-4 shadow-lg rounded-lg bg-slate-600 p-6 md:p-12 mb-6 max-w-full mx-4 md:mx-0">
+      {/* SVG Container - Hidden on Mobile */}
+      <div className='hidden md:block h-auto w-full md:w-auto'>
         <div className='max-h-full' ref={svgContainerRef}></div>
       </div>
       <div className="flex-1"></div>
-      <div className="text-slate-200 text-8xl justify-self-end">
+      <div className="text-slate-200 text-4xl md:text-8xl text-center md:text-right">
         <h1>Welcome!</h1>
       </div>
     </div>
