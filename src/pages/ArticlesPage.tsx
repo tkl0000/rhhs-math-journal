@@ -83,7 +83,7 @@ const ArticlesPage = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <></>
   }
 
   const filtered_articles = articles.filter(article =>
@@ -123,7 +123,9 @@ const ArticlesPage = () => {
                 >
                   <JournalCard
                     year={article.year}
+                    authenticated = {authenticated}
                     onClick={() => handleCardClick(article.path)}
+                    onDelete={() => handleCardDelete(article._id)}
                     setYearFilter={setYearFilter}
                   />
                 </motion.div>

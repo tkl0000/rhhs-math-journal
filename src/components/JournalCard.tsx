@@ -4,9 +4,11 @@ interface ArticleCardProps {
     year: number;
     onClick: () => void;
     setYearFilter: (newYear: string) => void;
+    authenticated: boolean;
+    onDelete: () => void;
 }
 
-const JournalCard: React.FC<ArticleCardProps> = ({ year, onClick, setYearFilter }) => {
+const JournalCard: React.FC<ArticleCardProps> = ({ year, onClick, setYearFilter, onDelete, authenticated }) => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     const toggleDropdown = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -38,6 +40,19 @@ const JournalCard: React.FC<ArticleCardProps> = ({ year, onClick, setYearFilter 
                         </svg>
                     </div>
                 </div>
+
+                <div>
+                {authenticated ? (<button
+                onClick={(e) => {
+                    e.stopPropagation(); // Prevent triggering the onClick event for the card
+                    onDelete();
+                }}
+                className="absolute bottom-2 right-2 bg-red-500 text-white text-xs rounded-full px-3 py-1 hover:bg-red-600"
+            >
+                Delete
+            </button>) : (<></>)}
+                </div>
+                
                 <div className="relative">
                     <button
                         onClick={toggleDropdown}
@@ -59,6 +74,7 @@ const JournalCard: React.FC<ArticleCardProps> = ({ year, onClick, setYearFilter 
 
                         </svg>
                     </button>
+                    
                 </div>
             </div>
         </>
