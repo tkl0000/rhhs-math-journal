@@ -110,7 +110,7 @@ const ArticlesPage = () => {
           </div>
 
           {/* Journals Row */}
-          <div className="flex flex-row flex-wrap gap-4 text-slate-200">
+          <div className="flex justify-center flex-row flex-wrap gap-2 text-slate-200">
             <AnimatePresence>
               {filtered_journals.map(article => (
                 <motion.div
@@ -119,11 +119,10 @@ const ArticlesPage = () => {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.3 }}
-                  className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4"
                 >
                   <JournalCard
                     year={article.year}
-                    authenticated = {authenticated}
+                    authenticated={authenticated}
                     onClick={() => handleCardClick(article.path)}
                     onDelete={() => handleCardDelete(article._id)}
                     setYearFilter={setYearFilter}
@@ -134,7 +133,7 @@ const ArticlesPage = () => {
           </div>
 
           {/* Articles Section */}
-          <div className="flex flex-wrap gap-4 text-slate-200 mt-4">
+          <div className="flex justify-center flex-wrap gap- text-slate-200 mt-4">
             <AnimatePresence>
               {filtered_articles.map(article => (
                 <motion.div
@@ -143,7 +142,6 @@ const ArticlesPage = () => {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.3 }}
-                  className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4"
                 >
                   <ArticleCard
                     title={article.name}

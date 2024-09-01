@@ -13,8 +13,6 @@ const HomePage = () => {
     <main className="container mx-auto pb-12">
       <Banner />
       <div className="text-slate-200 text-2xl mx-6 md:mx-0">
-        Lorem ipsum odor amet, consectetuer adipiscing elit. Ligula iaculis penatibus malesuada, curae pellentesque nec turpis. Dignissim mi litora hendrerit at placerat. Nisi neque aenean habitasse, at aliquam tristique etiam. Eget natoque ac fusce laoreet lobortis non aliquam turpis. Quis diam maecenas pulvinar dis magnis nam efficitur massa metus.
-
 
         {/* <p>Jajjajjajajajjajja</p>
             <MathJax>{"\\(\\frac{1x}{2x} \\neq 4 \\)"}</MathJax> */}

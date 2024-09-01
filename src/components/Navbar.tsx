@@ -13,7 +13,7 @@ const Navbar: React.FC = () => {
         <div className="flex overflow-x-auto space-x-4 sm:space-x-8 scrollbar-hide">
           <NavbarButton title="home" destination={`${base_url}`} />
           <NavbarButton title="articles" destination={`${base_url}articles`} />
-          <NavbarButton title="journal" destination={`${base_url}journal`} />
+          {/* <NavbarButton title="journal" destination={`${base_url}journal`} /> */}
           <NavbarButton title="acknowledgements" destination={`${base_url}acknowledgements`} />
           <NavbarButton title="login" destination={`${base_url}login`} />
         </div>
