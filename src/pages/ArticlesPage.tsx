@@ -115,9 +115,9 @@ const ArticlesPage = () => {
               {filtered_journals.map(article => (
                 <motion.div
                   key={article._id}
-                  initial={{ opacity: 0 }}
+                  initial={{ opacity: 1 }}
                   animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
+                  exit={{ opacity: 1 }}
                   transition={{ duration: 0.3 }}
                 >
                   <JournalCard
@@ -138,9 +138,9 @@ const ArticlesPage = () => {
               {filtered_articles.map(article => (
                 <motion.div
                   key={article._id}
-                  initial={{ opacity: 0 }}
+                  initial={{ opacity: 1 }}
                   animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
+                  exit={{ opacity: 1 }}
                   transition={{ duration: 0.3 }}
                 >
                   <ArticleCard
