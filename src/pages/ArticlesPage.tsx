@@ -106,7 +106,7 @@ const ArticlesPage = () => {
       transition={{ duration: 0.3, ease: 'easeInOut' }}
     >
       <main className="px-4 py-6 md:px-8">
-        <div className="flex flex-col w-full space-y-4 bg-fuchsia-300">
+        <div className="flex flex-col space-y-4 bg-fuchsia-300">
           <Year year={234234} articles={articles}/>
         </div>
       </main>

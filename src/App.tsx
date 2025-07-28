@@ -2,11 +2,13 @@ import React from 'react';
 import { BrowserRouter as _Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion, Variants } from 'framer-motion';
 import HomePage from './pages/HomePage';
-import ArticlesPage from './pages/ArticlesPage';
+// import ArticlesPage from './pages/ArticlesPage';
+import ArticlesPage2 from './pages/ArticlesPage2';
 import AckPage from './pages/AckPage';
 import Navbar from './components/Navbar';
 import LoginPage from './pages/LoginPage';
 import JournalPage from './pages/JournalPage';
+import './input.css'
 
 const pageTransition: Variants = {
   initial: { opacity: 0, x: -10, transition: { duration: 0.3, ease: 'easeInOut' } },
@@ -41,7 +43,7 @@ const App: React.FC = () => {
             />
             <Route
               path={`${base_url}articles`}
-              element={<ArticlesPage />}
+              element={<ArticlesPage2 />}
             />
             <Route
               path={`${base_url}acknowledgements`}

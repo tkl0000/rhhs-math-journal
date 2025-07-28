@@ -11,7 +11,7 @@ const Year: React.FC<YearProps> = ({ year, articles}) => {
   const [open, setOpen] = useState(true);
 
   return (
-    <div className="relative w-48 bg-fuchsia-400">
+    <div className="">
       <button
         onClick={() => setOpen(prev => !prev)}
         className="w-full px-4 py-2 bg-blue-600 text-white text-5xl rounded-md"
