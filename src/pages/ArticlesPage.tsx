@@ -6,13 +6,13 @@ import ArticleCard from '../components/ArticleCard.tsx';
 import axios from 'axios';
 
 const apiUrl = import.meta.env.VITE_APP_API_URL;
-const api_query = apiUrl + 'pdf/';
+// const api_query = apiUrl + 'pdf/';
 
 interface Article {
   name: string;
   author: string;
   year: number;
-  path: string;
+  link: string;
   isJournal: boolean;
   _id: string;
 }
@@ -25,11 +25,11 @@ const ArticlesPage = () => {
   const [curFilter, setFilter] = useState<string>("");
   const [yearFilter, setYearFilter] = useState<string>("");
 
-  const handleCardClick = (newPath: string) => {
-    if (newPath === "") {
+  const handleCardClick = (link: string) => {
+    if (link === "") {
       return;
     }
-    window.open(api_query + newPath);
+    window.open(link);
   };
 
   const handleCardDelete = async (_id: string) => {
@@ -123,7 +123,7 @@ const ArticlesPage = () => {
                   <JournalCard
                     year={article.year}
                     authenticated={authenticated}
-                    onClick={() => handleCardClick(article.path)}
+                    onClick={() => handleCardClick(article.link)}
                     onDelete={() => handleCardDelete(article._id)}
                     setYearFilter={setYearFilter}
                   />
@@ -149,7 +149,7 @@ const ArticlesPage = () => {
                     year={article.year}
                     _id={article._id}
                     authenticated={authenticated}
-                    onClick={() => handleCardClick(article.path)}
+                    onClick={() => handleCardClick(article.link)}
                     onDelete={() => handleCardDelete(article._id)}
                   />
                 </motion.div>
