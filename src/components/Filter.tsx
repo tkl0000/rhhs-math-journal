@@ -8,7 +8,7 @@ const Filter: React.FC<FilterProps> = ({ setFilter }) => {
   return (
     <div className="w-1/2">
       <input type="text"
-        className="w-full py-3 pl-10 pr-4 bg-white shadow-md border-2 rounded-lg"
+        className="w-full py-3 pl-10 pr-4 bg-white shadow-md border-2 rounded-lg focus:outline-none"
         placeholder="Search title, author, year..."
         onChange={(e) => setFilter(e.target.value)}></input>
     </div>
