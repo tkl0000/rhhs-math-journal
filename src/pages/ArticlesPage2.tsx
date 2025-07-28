@@ -10,7 +10,7 @@ const apiUrl = import.meta.env.VITE_APP_API_URL;
 // const api_query = apiUrl + 'pdf/';
 
 const ArticlesPage2 = () => {
-  const [token, setToken] = useState<string | null>(localStorage.getItem('token'));
+  const token = localStorage.getItem('token');
   const [articles, setArticles] = useState<Article[]>([]);
   const [authenticated, setAuthenticated] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
