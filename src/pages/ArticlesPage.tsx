@@ -14,10 +14,11 @@ interface Article {
   year: number;
   link: string;
   isJournal: boolean;
-  _id: string;
+  id: number;
 }
 
 const ArticlesPage = () => {
+  const [token, setToken] = useState<string | null>(localStorage.getItem('token'));
   const [articles, setArticles] = useState<Article[]>([]);
   const [authenticated, setAuthenticated] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
@@ -32,7 +33,7 @@ const ArticlesPage = () => {
     window.open(link);
   };
 
-  const handleCardDelete = async (_id: string) => {
+  const handleCardDelete = async (id: number) => {
     const isConfirmed = window.confirm("Are you sure you want to delete this article? This action cannot be undone.");
 
     if (!isConfirmed) {
@@ -40,8 +41,13 @@ const ArticlesPage = () => {
     }
 
     try {
-      setArticles((prevArticles) => prevArticles.filter(article => article._id !== _id));
-      const response = await axios.delete(apiUrl + 'articles/' + _id);
+      setArticles((prevArticles) => prevArticles.filter(article => article.id !== id));
+      const response = await axios.delete(apiUrl + 'articles/' + id.toString(), {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': token,
+        }
+      });
       console.log(response.data);
     } catch (err) {
       setError('Failed to Delete Article');
@@ -52,6 +58,7 @@ const ArticlesPage = () => {
     const fetchArticles = async () => {
       try {
         const response = await axios.get(apiUrl + 'articles');
+        console.log(response.data)
         setArticles(response.data);
         setLoading(false);
       } catch (err) {
@@ -114,7 +121,7 @@ const ArticlesPage = () => {
             <AnimatePresence>
               {filtered_journals.map(article => (
                 <motion.div
-                  key={article._id}
+                  key={article.id}
                   initial={{ opacity: 1 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 1 }}
@@ -124,7 +131,7 @@ const ArticlesPage = () => {
                     year={article.year}
                     authenticated={authenticated}
                     onClick={() => handleCardClick(article.link)}
-                    onDelete={() => handleCardDelete(article._id)}
+                    onDelete={() => handleCardDelete(article.id)}
                     setYearFilter={setYearFilter}
                   />
                 </motion.div>
@@ -137,7 +144,7 @@ const ArticlesPage = () => {
             <AnimatePresence>
               {filtered_articles.map(article => (
                 <motion.div
-                  key={article._id}
+                  key={article.id}
                   initial={{ opacity: 1 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 1 }}
@@ -147,10 +154,10 @@ const ArticlesPage = () => {
                     title={article.name}
                     content={article.author}
                     year={article.year}
-                    _id={article._id}
+                    id={article.id}
                     authenticated={authenticated}
                     onClick={() => handleCardClick(article.link)}
-                    onDelete={() => handleCardDelete(article._id)}
+                    onDelete={() => handleCardDelete(article.id)}
                   />
                 </motion.div>
               ))}

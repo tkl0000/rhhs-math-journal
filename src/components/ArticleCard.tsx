@@ -4,7 +4,7 @@ interface ArticleCardProps {
     title: string;
     content: string;
     year: number;
-    _id: string;
+    id: number;
     authenticated: boolean;
     onClick: () => void;
     onDelete: () => void;
