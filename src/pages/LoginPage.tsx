@@ -52,7 +52,7 @@ const LoginPage: React.FC = () => {
     >
       <div className="m-6">
         {authenticated ? (
-          <UploadForm />
+          <UploadForm token={token ?? ''}/>
         ) : (
           <LoginForm setToken={setToken} />
         )}
