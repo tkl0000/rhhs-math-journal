@@ -1,21 +1,14 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, easeOut } from 'framer-motion';
 import Filter from '../components/Filter.tsx';
 import JournalCard from '../components/JournalCard.tsx';
 import ArticleCard from '../components/ArticleCard.tsx';
+import {Article} from '../types/Article.tsx'
+import Year from '../components/Year.tsx'
 import axios from 'axios';
 
 const apiUrl = import.meta.env.VITE_APP_API_URL;
 // const api_query = apiUrl + 'pdf/';
-
-interface Article {
-  name: string;
-  author: string;
-  year: number;
-  link: string;
-  isJournal: boolean;
-  id: number;
-}
 
 const ArticlesPage = () => {
   const [token, setToken] = useState<string | null>(localStorage.getItem('token'));
@@ -101,6 +94,8 @@ const ArticlesPage = () => {
     (yearFilter === "" || article.year.toString() === yearFilter)
   );
 
+  const years = [...new Set(filtered_articles.map(article => article.year))]
+
   const filtered_journals = articles.filter(article => article.isJournal);
 
   return (
@@ -111,58 +106,8 @@ const ArticlesPage = () => {
       transition={{ duration: 0.3, ease: 'easeInOut' }}
     >
       <main className="px-4 py-6 md:px-8">
-        <div className="flex flex-col w-full space-y-4">
-          <div className="flex justify-center mb-4 w-full sm:w-3/4 md:w-2/3 lg:w-2/3 mx-auto">
-            <Filter setFilter={setFilter} />
-          </div>
-
-          {/* Journals Row */}
-          <div className="flex justify-center flex-row flex-wrap gap-2 text-slate-200">
-            <AnimatePresence>
-              {filtered_journals.map(article => (
-                <motion.div
-                  key={article.id}
-                  initial={{ opacity: 1 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 1 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <JournalCard
-                    year={article.year}
-                    authenticated={authenticated}
-                    onClick={() => handleCardClick(article.link)}
-                    onDelete={() => handleCardDelete(article.id)}
-                    setYearFilter={setYearFilter}
-                  />
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </div>
-
-          {/* Articles Section */}
-          <div className="flex justify-center flex-wrap gap- text-slate-200 mt-4">
-            <AnimatePresence>
-              {filtered_articles.map(article => (
-                <motion.div
-                  key={article.id}
-                  initial={{ opacity: 1 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 1 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <ArticleCard
-                    title={article.name}
-                    content={article.author}
-                    year={article.year}
-                    id={article.id}
-                    authenticated={authenticated}
-                    onClick={() => handleCardClick(article.link)}
-                    onDelete={() => handleCardDelete(article.id)}
-                  />
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </div>
+        <div className="flex flex-col w-full space-y-4 bg-fuchsia-300">
+          <Year year={234234} articles={articles}/>
         </div>
       </main>
     </motion.main>
