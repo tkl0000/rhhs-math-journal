@@ -111,8 +111,8 @@ const ArticlesPage2 = () => {
           </div> */}
 
           {/* Journals Row */}
-          <div className="mx-20 flex flex-row justify-between">
-            <div className="flex-1 flex flex-row items-center overflow-x-scroll mr-12">
+          <div className="mx-0 lg:mx-20 flex flex-row justify-between">
+            <div className="flex-1 flex flex-row items-center overflow-x-scroll mr-12 lg:mr-12">
               <AnimatePresence>
                 {years.map(year => (
                   <motion.div
@@ -139,7 +139,7 @@ const ArticlesPage2 = () => {
           </div>
 
           {/* Articles Section */}
-          <div className="flex justify-center flex-wrap gap- text-slate-200 mt-4">
+          <div className="flex justify-center flex-wrap text-slate-200 mt-4">
             <AnimatePresence>
               {filtered_articles.map(article => (
                 <motion.div
