@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence, easeOut } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import Filter from '../components/Filter.tsx';
 import JournalCard from '../components/JournalCard.tsx';
 import ArticleCard from '../components/ArticleCard.tsx';
@@ -95,40 +95,48 @@ const ArticlesPage2 = () => {
 
   const filtered_journals = articles.filter(article => article.isJournal);
 
+  const years = [...new Set(articles.map(article => article.year))].sort((a, b) => b - a)
+
   return (
     <motion.main
-      initial={{ opacity: 0, x: -10 }}
+      initial={{ opacity: 0, x: 0 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: 10 }}
       transition={{ duration: 0.3, ease: 'easeInOut' }}
     >
       <main className="px-4 py-6 md:px-8">
         <div className="flex flex-col w-full space-y-4">
-          <div className="flex justify-center mb-4 w-full mx-auto">
+          {/* <div className="flex justify-center mb-4 w-full mx-auto">
             <Filter setFilter={setFilter} />
-          </div>
+          </div> */}
 
           {/* Journals Row */}
-          <div className="flex justify-center flex-row flex-wrap gap-2 text-slate-200">
-            <AnimatePresence>
-              {filtered_journals.map(article => (
-                <motion.div
-                  key={article.id}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <JournalCard
-                    year={article.year}
-                    authenticated={authenticated}
-                    onClick={() => handleCardClick(article.link)}
-                    onDelete={() => handleCardDelete(article.id)}
-                    setYearFilter={setYearFilter}
-                  />
-                </motion.div>
-              ))}
-            </AnimatePresence>
+          <div className="mx-20 flex flex-row justify-between">
+            <div className="flex-1 flex flex-row items-center overflow-x-scroll mr-12">
+              <AnimatePresence>
+                {years.map(year => (
+                  <motion.div
+                    key={year}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{
+                      duration: 0.5,
+                      ease: [0.25, 1, 0.5, 1], // Cubic-bezier for smooth deceleration
+                    }}
+                  >
+                    <JournalCard
+                      year={year}
+                      authenticated={authenticated}
+                      setYearFilter={setYearFilter}
+                    />
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </div>
+            <div className="flex-1 flex flex-row items-center">
+              <Filter setFilter={setFilter} />
+            </div>
           </div>
 
           {/* Articles Section */}
@@ -142,9 +150,9 @@ const ArticlesPage2 = () => {
                 animate={{ opacity: 1, translateY: 0 }}
                 exit={{ opacity: 0 }}
                 transition={{
-                duration: 0.5,
-                ease: [0.25, 1, 0.5, 1], // Cubic-bezier for smooth deceleration
-              }}
+                  duration: 0.5,
+                  ease: [0.25, 1, 0.5, 1], // Cubic-bezier for smooth deceleration
+                }}
               >
                   <ArticleCard
                     title={
