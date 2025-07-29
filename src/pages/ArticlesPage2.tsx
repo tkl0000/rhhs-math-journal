@@ -93,7 +93,7 @@ const ArticlesPage2 = () => {
     (yearFilter === "" || article.year.toString() === yearFilter)
   );
 
-  const filtered_journals = articles.filter(article => article.isJournal);
+  // const filtered_journals = articles.filter(article => article.isJournal);
 
   const years = [...new Set(articles.map(article => article.year))].sort((a, b) => b - a)
 
@@ -127,7 +127,6 @@ const ArticlesPage2 = () => {
                   >
                     <JournalCard
                       year={year}
-                      authenticated={authenticated}
                       setYearFilter={setYearFilter}
                     />
                   </motion.div>

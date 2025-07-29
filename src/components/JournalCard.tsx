@@ -3,10 +3,9 @@ import React, { useState } from 'react';
 interface ArticleCardProps {
     year: number;
     setYearFilter: (newYear: string) => void;
-    authenticated: boolean;
 }
 
-const JournalCard: React.FC<ArticleCardProps> = ({ year, setYearFilter, authenticated }) => {
+const JournalCard: React.FC<ArticleCardProps> = ({ year, setYearFilter }) => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [highlight, setHighlight] = useState(false)
 
