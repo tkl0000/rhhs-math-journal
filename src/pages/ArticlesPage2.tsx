@@ -104,7 +104,7 @@ const ArticlesPage2 = () => {
     >
       <main className="px-4 py-6 md:px-8">
         <div className="flex flex-col w-full space-y-4">
-          <div className="flex justify-center mb-4 w-full sm:w-3/4 md:w-2/3 lg:w-2/3 mx-auto">
+          <div className="flex justify-center mb-4 w-full mx-auto">
             <Filter setFilter={setFilter} />
           </div>
 

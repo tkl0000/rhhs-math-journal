@@ -6,9 +6,9 @@ interface FilterProps {
 
 const Filter: React.FC<FilterProps> = ({ setFilter }) => {
   return (
-    <div className="w-1/2">
+    <div className="w-full flex justify-center">
       <input type="text"
-        className="w-full py-3 pl-10 pr-4 bg-white shadow-md border-2 rounded-lg focus:outline-none"
+        className="w-3/4 lg:w-3/4 py-3 pl-10 pr-4 bg-white shadow-md border-2 rounded-2xl focus:outline-none"
         placeholder="Search title, author, year..."
         onChange={(e) => setFilter(e.target.value)}></input>
     </div>
