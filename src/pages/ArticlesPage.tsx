@@ -106,8 +106,11 @@
 //       transition={{ duration: 0.3, ease: 'easeInOut' }}
 //     >
 //       <main className="px-4 py-6 md:px-8">
-//         <div className="flex flex-col space-y-4 bg-fuchsia-300">
-//           <Year year={234234} articles={articles}/>
+//         <div className="flex flex-col justify-start space-y-4">
+//             <Filter setFilter={setFilter}/>
+//             {years.map(year => {
+//                 return <Year year={year} articles={articles.filter(article => article.year === year)}/>
+//             })}
 //         </div>
 //       </main>
 //     </motion.main>

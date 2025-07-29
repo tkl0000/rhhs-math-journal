@@ -143,7 +143,9 @@ const ArticlesPage2 = () => {
                   transition={{ duration: 0.3 }}
                 >
                   <ArticleCard
-                    title={article.name}
+                    title={
+                      article.name
+                    }
                     content={article.author}
                     year={article.year}
                     id={article.id}
