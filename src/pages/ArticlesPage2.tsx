@@ -86,7 +86,6 @@ const ArticlesPage2 = () => {
   }
 
   const filtered_articles = articles.filter(article =>
-    !article.isJournal &&
     (article.name.toLowerCase().includes(curFilter.toLowerCase()) ||
       article.author.toLowerCase().includes(curFilter.toLowerCase()) ||
       article.year.toString().includes(curFilter)) &&
