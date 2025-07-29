@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, easeOut } from 'framer-motion';
 import Filter from '../components/Filter.tsx';
 import JournalCard from '../components/JournalCard.tsx';
 import ArticleCard from '../components/ArticleCard.tsx';
@@ -136,12 +136,16 @@ const ArticlesPage2 = () => {
             <AnimatePresence>
               {filtered_articles.map(article => (
                 <motion.div
-                  key={article.id}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.3 }}
-                >
+                key={article.id}
+                layout // ✨ enables automatic reflow animations
+                initial={{ opacity: 0, translateY: 10 }}
+                animate={{ opacity: 1, translateY: 0 }}
+                exit={{ opacity: 0 }}
+                transition={{
+                duration: 0.5,
+                ease: [0.25, 1, 0.5, 1], // Cubic-bezier for smooth deceleration
+              }}
+              >
                   <ArticleCard
                     title={
                       article.name
